@@ -16,7 +16,14 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1577691515192_7646';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [ 'gzip' ];
+  config.onerror = {
+    errorPageUrl: '/500.html',
+  };
+  config.notfound = {
+    pageUrl: '/404.html',
+  };
+
 
   // add your user config here
   const userConfig = {
@@ -62,4 +69,23 @@ function apps() {
     pageSize: 5,
     serverUrl: 'https://hacker-news.firebaseio.com/v0', // 要proxy
   };
+
+  exports.userservice = {
+    service: {
+      async getUser(ctx) {
+        // Retrieve your user data from cookie, redis, db, whatever
+        // For common web applications using cookie, you may get session id with ctx.cookies
+        if (!ctx.session.user) {
+          return null;
+        }
+        const { userId, userName, isAdmin } = ctx.session.user;
+        return { userId, userName, isAdmin };
+      },
+
+      getUserId(ctx) {
+        return ctx.user && ctx.user.userId;
+      },
+    },
+  };
+
 }

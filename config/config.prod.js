@@ -16,6 +16,7 @@ module.exports = appInfo => {
   apps();
   http();
   middlewares();
+
 };
 
 function http() {
