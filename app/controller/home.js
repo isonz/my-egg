@@ -10,12 +10,14 @@ class HomeController extends Controller {
     let userId = '';
     let userName = '';
     let isAdmin = '';
+    // console.log(ctx.session);
     if (ctx.session.user) {
       userId = ctx.session.user.userId;
       userName = ctx.session.user.userName;
       isAdmin = ctx.session.user.isAdmin;
     }
     ctx.body = 'userId : ' + userId + ', userName :' + userName + ', isAdmin :' + isAdmin;
+    // ctx.body = ' userId : ' + this.ctx.userId + ', userName :' + this.ctx.user.userName + ', isAdmin :' + this.ctx.user.isAdmin;
   }
 
   async sessionRemove() {
@@ -27,8 +29,7 @@ class HomeController extends Controller {
 
   async cookies() {
     const { ctx } = this;
-    console.log( ctx.cookies.get('userId'));
-    const userId = typeof ctx.cookies.get('userId') !== 'undefined' ? ctx.cookies.get('userId') : '';
+    const userId = typeof ctx.cookies.get('userId', { encrypt: true }) !== 'undefined' ? ctx.cookies.get('userId', { encrypt: true }) : '';
     const userName = typeof ctx.cookies.get('userName') !== 'undefined' ? ctx.cookies.get('userName') : '';
     const isAdmin = typeof ctx.cookies.get('isAdmin') !== 'undefined' ? ctx.cookies.get('isAdmin') : '';
 

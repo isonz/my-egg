@@ -2,11 +2,11 @@
 
 const Controller = require('../core/base_controller');
 
-class HomeController extends Controller {
+class AdminController extends Controller {
   async index() {
     const { ctx } = this;
-    ctx.body = 'hi, egg';
+    ctx.body = 'hi, admin';
   }
 }
 
-module.exports = HomeController;
+module.exports = AdminController;

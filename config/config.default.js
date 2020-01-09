@@ -23,7 +23,29 @@ module.exports = appInfo => {
   config.notfound = {
     pageUrl: '/404.html',
   };
+  config.session = {
+    key: 'SESSID',
+    maxAge: 1800 * 1000, // 30分钟
+    httpOnly: true,
+    encrypt: true,
+    renew: true, // 延长会话有效期
+  };
+  config.jwt = {
+    secret: 'fo-san-wu-yin-tui',
+  };
 
+  /*
+  config.security = {
+    csrf: {
+      enable: false,
+      ignoreJSON: true, // 默认为 false，当设置为 true 时，将会放过所有 content-type 为 `application/json` 的请求
+    },
+    domainWhiteList: [ 'http://localhost:8080' ],
+  };
+  config.cors = {
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
+  };
+  */
 
   // add your user config here
   const userConfig = {

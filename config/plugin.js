@@ -9,6 +9,21 @@
 //
 // };
 
+/**
+ * 把Session放在redis里时取消下面两个plugin的注释
+ */
+
+// exports.redis = {
+//   enable: true,
+//   package: 'egg-redis',
+// };
+
+// exports.sessionRedis = {
+//   enable: true,
+//   package: 'egg-session-redis',
+// };
+
+
 const path = require('path');
 
 
@@ -35,3 +50,13 @@ exports.userservice = {
   enable: true,
   package: 'egg-userservice',
 };
+
+exports.jwt = {
+  enable: true,
+  package: 'egg-jwt',
+};
+
+// exports.cors = {
+//   enable: true,
+//   package: 'egg-cors',
+// };
